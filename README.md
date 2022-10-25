@@ -15,7 +15,7 @@ Some scripts for Obsidian
 ```javascript
 ```dataviewjs
 dv.view("anniversary")
-```
+``\`
 ```
 
 使用`anniversary`模板
