@@ -36,11 +36,9 @@ isLunar: false # 是否按农历计算，适用于农历生日、新年等
 
 #### 页面内输出代码
 
-```javascript
     ```dataviewjs
     dv.view("domain-renew-project")
     ```
-```
 
 #### 使用`domain-renew-project`模板
 
