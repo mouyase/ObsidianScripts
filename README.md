@@ -8,13 +8,19 @@ Some scripts for Obsidian
 
 最后将`Template`目录中的模板文件复制到你的模板目录。
 
+    ```
+        ```math
+        E = mc^2
+        ```
+    ```
+
 ### 纪念日anniversary
 
 输出代码
 
- ```dataviewjs
- dv.view("anniversary")
- ```
+```dataviewjs
+dv.view("anniversary")
+```
 
 使用`anniversary`模板
 ```
