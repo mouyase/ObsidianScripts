@@ -1,6 +1,11 @@
 # ObsidianScripts
 Some scripts for Obsidian
 
+## 目录
+
+ - [纪念日](#纪念日)
+ - [域名续费计划](#域名续费计划)
+
 ## 使用说明
 首先需要你的`Obsidian`安装`Dataview`插件，并且打开js功能。~~想必大家应该都有装这个插件~~
 
