@@ -13,9 +13,9 @@ Some scripts for Obsidian
 输出代码
 
 ```javascript
-```dataviewjs
-dv.view("anniversary")
-``\`
+  ```dataviewjs
+  dv.view("anniversary")
+  ```
 ```
 
 使用`anniversary`模板
