@@ -6,7 +6,7 @@ async function main() {
 		const { renew, provider, provider_url } = item
 		const date = new Date(renew)
 		return [item.file.link, getExpiringSoon(date), getDistancen(date), getDate(date), provider, provider_url]
-	}).values	
+	}).values.filter(item => item[3] !== "Invalid date")
 	tableData.sort((a, b) => a[2] - b[2])
 	dv.table(['域名', '即将到期', '剩余时间', '到期时间', '服务商', '服务商地址'], tableData)
 }
