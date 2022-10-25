@@ -12,11 +12,9 @@ Some scripts for Obsidian
 
 #### 页面内输出代码
 
-```javascript
-```dataviewjs
-dv.view("anniversary")
-```
-```
+    ```dataviewjs
+    dv.view("anniversary")
+    ```
 
 #### 使用`anniversary`模板
 
