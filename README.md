@@ -12,7 +12,7 @@ Some scripts for Obsidian
 
 输出代码
 
-    ```
+    ```javascript
         ```dataviewjs
         dv.view("anniversary")
         ```
