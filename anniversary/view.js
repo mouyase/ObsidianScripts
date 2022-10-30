@@ -41,11 +41,13 @@ function getNextDateLunar(date) {
 }
 
 function getNextDateDistancen(date) {
-	return moment(getNextDate(date)).diff(moment(), 'day')
+	const distancen = moment(getNextDate(date)).diff(moment(), 'day') + 1
+	return distancen > 0 ? distancen : '就是今天'
 }
 
 function getNextDateDistancenLunar(date) {
-	return moment(getNextDateLunar(date)).diff(moment(), 'day')
+	const distancen = moment(getNextDateLunar(date)).diff(moment(), 'day') + 1
+	return distancen > 0 ? distancen : '就是今天'
 }
 
 function getTimes(date) {
