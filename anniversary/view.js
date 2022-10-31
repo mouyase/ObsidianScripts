@@ -7,10 +7,15 @@ async function main() {
 	const tableData = dv.pages().where(item => item.type === 'anniversary').map(item => {
 		const { date: originDate, isLunar } = item
 		const date = new Date(originDate)
-		return [item.file.link, getDate(date), isLunar ? getNextDateLunar(date) : getNextDate(date), isLunar ? getNextDateDistancenLunar(date) : getNextDateDistancen(date), isLunar ? getTimesLunar(date) : getTimes(date)]
+		const file = item.file.link
+		const dateText = getDate(date)
+		const nextDate = isLunar ? getNextDateLunar(date) : getNextDate(date)
+		const distancen = isLunar ? getNextDateDistancenLunar(date) : getNextDateDistancen(date)
+		const times = isLunar ? getTimesLunar(date) : getTimes(date)
+		return [file, dateText, nextDate, distancen, times]
 	}).values.filter(item => item[1] !== "Invalid date" && item[2] !== "Invalid date")
 	tableData.sort((a, b) => a[3] - b[3])
-	dv.table(['纪念日', '日期', '下次日期', '距今', '已过'], tableData.map(item => [item[0], item[1], item[2], `${item[3]} 天`, `${item[4]} 次`]))
+	dv.table(['纪念日', '日期', '下次日期', '距今', '已过'], tableData.map(item => [item[0], item[1], item[2], `${item[3] === 0 ? '就是今天' : item[3] + " 天"}`, `${item[4]} 次`]))
 }
 main()
 
@@ -41,13 +46,13 @@ function getNextDateLunar(date) {
 }
 
 function getNextDateDistancen(date) {
-	const distancen = moment(getNextDate(date)).diff(moment(), 'day') + 1
-	return distancen > 0 ? distancen : '就是今天'
+	const distancen = moment(getNextDate(date)).diff(moment(), 'day')
+	return distancen
 }
 
 function getNextDateDistancenLunar(date) {
-	const distancen = moment(getNextDateLunar(date)).diff(moment(), 'day') + 1
-	return distancen > 0 ? distancen : '就是今天'
+	const distancen = moment(getNextDateLunar(date)).diff(moment(), 'day')
+	return distancen
 }
 
 function getTimes(date) {
