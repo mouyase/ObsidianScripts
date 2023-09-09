@@ -42,7 +42,7 @@ function getDate(date) {
 function getDateLunar(date) {
 	const newDate = dayjs(date)
 	const lunarDate = lunar.solar2lunar(newDate.year(), newDate.month() + 1, newDate.date())
-	return `${lunarDate.IMonthCn}${lunarDate.IDayCn}`
+	return `${lunarDate.gzYear} ${lunarDate.Animal}年 ${lunarDate.IMonthCn}${lunarDate.IDayCn}`
 }
 
 function getNextDate(date) {
@@ -80,18 +80,30 @@ function getNextDateDistancen(date) {
 }
 
 function getTimes(date) {
-	return `${dayjs().diff(dayjs(date), 'year')} 次`
+	const newDate = dayjs(date)
+	const today = dayjs()
+	const lastYear = newDate.year(today.year()-1)
+	const thisYear =  newDate.year(today.year())
+	let times = 0
+	if (thisYear.unix() > today.unix()) {
+		times = lastYear.year() - newDate.year()
+	} else {
+		times = thisYear.year() - newDate.year()
+	}
+	return `${times} 次`
 }
 
 function getTimesLunar(date) {
-	const lunarNext = getNextDateLunar(date)
 	const newDate = dayjs(date)
 	const today = dayjs()
 	const dateLunar = lunar.solar2lunar(newDate.year(), newDate.month() + 1, newDate.date())
-	const todayLunar = lunar.solar2lunar(today.year(), today.month() + 1, today.date())
-	let times = todayLunar.lYear - dateLunar.lYear
-	if (lunarNext.year() === today.year()) {
-		times--
+	const lastYearLunar = lunar.lunar2solar(today.year() - 1, dateLunar.lMonth, dateLunar.lDay)
+	const thisYearLunar = lunar.lunar2solar(today.year(), dateLunar.lMonth, dateLunar.lDay)
+	let times = 0
+	if (dayjs(`${thisYearLunar.cYear}-${thisYearLunar.cMonth}-${thisYearLunar.cDay}`).unix() > today.unix()) {
+		times = lastYearLunar.lYear - dateLunar.lYear
+	} else {
+		times = thisYearLunar.lYear - dateLunar.lYear
 	}
 	return `${times} 次`
 }
